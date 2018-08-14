@@ -1,7 +1,7 @@
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.demo.pojo
-#Êý¾Ý¿âÁ¬½Ó³Ø
+#ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Ó³ï¿½
 spring:
   datasource:
     username: root
@@ -9,6 +9,6 @@ spring:
     url: jdbc:mysql://47.107.36.143:3306/demo
     driver-class-name: com.mysql.jdbc.Driver
 
-#¶Ë¿Ú
+#ï¿½Ë¿ï¿½
 server:
-  port: 8080
+  port: 8081
