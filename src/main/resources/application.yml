@@ -1,0 +1,14 @@
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.demo.pojo
+#数据库连接池
+spring:
+  datasource:
+    username: root
+    password: yjf948512
+    url: jdbc:mysql://47.107.36.143:3306/demo
+    driver-class-name: com.mysql.jdbc.Driver
+
+#端口
+server:
+  port: 8080
