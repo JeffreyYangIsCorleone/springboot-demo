@@ -1,0 +1,8 @@
+sys_setting_mag,设置
+author_mag,角色与账号,p_sys_setting_mag
+role_mag,角色管理,g_role,p_author_mag
+sys_user_mag,账号管理,g_account,p_author_mag
+
+user_mag,用户
+
+
