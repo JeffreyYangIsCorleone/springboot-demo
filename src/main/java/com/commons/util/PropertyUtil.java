@@ -1,5 +1,7 @@
 package com.commons.util;
 
+import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 public class PropertyUtil {
@@ -29,6 +31,48 @@ public class PropertyUtil {
                 set.add((String) key);
             }
             return set;
+        }
+    }
+
+    public Set<Object> getKeysByFileName(String fileName){
+        FileInputStream in = null;
+        BufferedReader bufferedReader = null;
+        InputStreamReader inputStreamReader = null;
+        try{
+            URL basePath = PropertyUtil.class.getClassLoader().getResource("");
+            String parentPath = new File(basePath.getPath()).getParent();
+            System.out.println(parentPath + "\\classes\\" + fileName);
+            in = new FileInputStream(parentPath + "\\classes\\" + fileName);
+            inputStreamReader = new InputStreamReader(in,"GBK");
+            bufferedReader = new BufferedReader(inputStreamReader);
+            properties.load(bufferedReader);
+            return properties.keySet();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("properties file read error...");
+            return null;
+        }finally {
+            if( in != null ){
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if( bufferedReader != null ){
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if( inputStreamReader != null ){
+                try {
+                    inputStreamReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

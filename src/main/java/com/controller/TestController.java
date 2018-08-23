@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.commons.model.StaticModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,12 +17,12 @@ public class TestController {
     @ResponseBody
     public Map<String, Object> Method(){
         Map<String, Object> returnMap = new HashMap<>();
-        returnMap.put("success", true);
+        returnMap.put("success", StaticModel.menuList);
         return returnMap;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         URL resource = TestController.class.getClassLoader().getResource("");
         System.out.println(resource.getPath());
-    }
+    }*/
 }
