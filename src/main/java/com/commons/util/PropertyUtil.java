@@ -34,15 +34,19 @@ public class PropertyUtil {
         }
     }
 
+    public static void main(String[] args) {
+        URL basePath = PropertyUtil.class.getResource("/");
+        System.out.println(basePath.getPath());
+    }
+
     public Set<Object> getKeysByFileName(String fileName){
         FileInputStream in = null;
         BufferedReader bufferedReader = null;
         InputStreamReader inputStreamReader = null;
         try{
-            URL basePath = PropertyUtil.class.getClassLoader().getResource("");
-            String parentPath = new File(basePath.getPath()).getParent();
-            System.out.println(parentPath + "/classes/" + fileName);
-            in = new FileInputStream(parentPath + "/classes/" + fileName);
+            URL basePath = PropertyUtil.class.getResource("/");
+            System.out.println(basePath.getPath() + fileName);
+            in = new FileInputStream(basePath.getPath() + fileName);
             inputStreamReader = new InputStreamReader(in,"GBK");
             bufferedReader = new BufferedReader(inputStreamReader);
             properties.load(bufferedReader);
