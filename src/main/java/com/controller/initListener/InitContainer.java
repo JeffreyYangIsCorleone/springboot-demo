@@ -16,7 +16,7 @@ public class InitContainer implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        loadPropertiesByStrMap("file/system_menu.txt", StaticModel.menuList);
+        loadPropertiesByStrMap("file\\system_menu.txt", StaticModel.menuList);
     }
 
     /**
