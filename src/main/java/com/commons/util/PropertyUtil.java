@@ -41,8 +41,8 @@ public class PropertyUtil {
         try{
             URL basePath = PropertyUtil.class.getClassLoader().getResource("");
             String parentPath = new File(basePath.getPath()).getParent();
-            System.out.println(parentPath + "\\classes\\" + fileName);
-            in = new FileInputStream(parentPath + "\\classes\\" + fileName);
+            System.out.println(parentPath + "/classes/" + fileName);
+            in = new FileInputStream(parentPath + "/classes/" + fileName);
             inputStreamReader = new InputStreamReader(in,"GBK");
             bufferedReader = new BufferedReader(inputStreamReader);
             properties.load(bufferedReader);
