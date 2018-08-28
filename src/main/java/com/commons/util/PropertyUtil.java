@@ -34,21 +34,18 @@ public class PropertyUtil {
         }
     }
 
-    public static void main(String[] args) {
-        URL basePath = PropertyUtil.class.getResource("/");
-        System.out.println(basePath.getPath());
-    }
-
     public Set<Object> getKeysByFileName(String fileName){
-        FileInputStream in = null;
+//        FileInputStream in = null;
         BufferedReader bufferedReader = null;
-        InputStreamReader inputStreamReader = null;
+//        InputStreamReader inputStreamReader = null;
+        InputStream input = null;
         try{
-            URL basePath = PropertyUtil.class.getResource("/");
-            System.out.println(basePath.getPath() + fileName);
-            in = new FileInputStream(basePath.getPath() + fileName);
-            inputStreamReader = new InputStreamReader(in,"GBK");
-            bufferedReader = new BufferedReader(inputStreamReader);
+            //URL basePath = PropertyUtil.class.getResource("/");
+            input = PropertyUtil.class.getResourceAsStream("/"+fileName);
+//            System.out.println(basePath.getPath() + fileName);
+//            in = new FileInputStream(basePath.getPath() + fileName);
+//            inputStreamReader = new InputStreamReader(in,"GBK");
+            bufferedReader = new BufferedReader(new InputStreamReader(input,"GBK"));
             properties.load(bufferedReader);
             return properties.keySet();
         }catch (Exception e){
@@ -56,23 +53,16 @@ public class PropertyUtil {
             System.out.println("properties file read error...");
             return null;
         }finally {
-            if( in != null ){
+            if( input != null ){
                 try {
-                    in.close();
+                    input.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            if( bufferedReader != null ){
+            if(bufferedReader != null ){
                 try {
                     bufferedReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if( inputStreamReader != null ){
-                try {
-                    inputStreamReader.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
