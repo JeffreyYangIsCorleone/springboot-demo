@@ -9,6 +9,10 @@ spring:
     url: jdbc:mysql://47.107.36.143:3306/demo
     driver-class-name: com.mysql.jdbc.Driver
 
+security:
+  user:
+    name: admin
+    password: admin
 
 server:
   port: 8082
