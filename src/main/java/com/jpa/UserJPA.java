@@ -11,4 +11,7 @@ public interface UserJPA extends JpaRepository<JefUser,Integer>, JpaSpecificatio
 
     @Query(value = "select userId,userName,account,createAt from jef_user where account= ?1 and password = ?2",nativeQuery = true)
     JefUser findJefUserByAccount(String account, String password);
+
+    @Query(value = "select userId,userName,account,createAt,password from jef_user where account= ?1",nativeQuery = true)
+    JefUser findByOnlyAccount(String account);
 }
