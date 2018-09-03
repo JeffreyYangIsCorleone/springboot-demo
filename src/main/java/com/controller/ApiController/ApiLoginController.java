@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 @RequestMapping("/login")
@@ -24,10 +27,20 @@ public class ApiLoginController {
 
     @RequestMapping("/check_login")
     @ResponseBody
-    public Map<String, Object> checkUserAccount(String account, String password){
-        logger.info("check_login...");
-        if(StringUtils.isEmpty(account) || StringUtils.isEmpty(password)){
-            throw new BusiException(Code.WITHOUT_LOGIN,"登陆失败");
+    public void checkUserAccount(HttpServletResponse resp) throws IOException {
+        resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        resp.setContentType("application/json;charset=UTF-8");
+        PrintWriter out = resp.getWriter();
+        out.write("{\"status\":\"error\",\"msg\":\"尚未登录，请登录!\"}");
+        out.flush();
+        out.close();
+    }
+
+    @RequestMapping("/login")
+    @ResponseBody
+    public Map<String, Object> login(String account,String password){
+        if( StringUtils.isEmpty(account) || StringUtils.isEmpty(password)){
+            throw new BusiException(Code.PARAMS_ERROR,"参数为空");
         }
         return loginService.checkUserAccount(account,password);
     }
